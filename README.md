@@ -8,8 +8,11 @@ In the project directory, you can run:
 
 ### `yarn start`
 
-模拟Vue中的slot 虽然React中没有Vue的插槽，但可以实现类似功能，根本原理就是jsx可以当成参数传递给组件；  
-- 可以将jsx放在元素内部，子组件可通过`props.children`获取  
-- 也可以将jsx放在属性中传递给子组件，子组件通过`props`获取
-  
+### 高阶组件
 
+#### 什么是高阶组件呢？
+• 官方定义：高阶组件是参数为组件，返回值为新组建的函数  
+• 首先，高阶组件本身不是一个组件，是一个函数  
+• 其次，这个函数的参数是一个组件，返回值也是一个组件  
+高阶组件的调用形式类似于这样：  
+`const EnhancedComponent = higherOrderComponent(WrappedComponent)`

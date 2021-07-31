@@ -1,30 +1,26 @@
-import React, { Component, createRef } from 'react'
+import React, { Component, PureComponent } from 'react'
 
-export default class App extends Component {
-  constructor(props) {
-    super(props)
-    this.titleRef = createRef()
-    this.titleP = null
-  }
+class App extends Component {
   render () {
     return (
       <div>
-        <h2>React Demo</h2>
-        <p ref="thisp">this is p</p>
-        <p ref={this.titleRef}>this is another p</p>
-        <p ref={arg => this.titleP = arg}>this is third p</p>
-        <button onClick={e => this.changeIt()}>click me</button>
+        <h2>hello react</h2>
+        <h3>{this.props.name}</h3>
       </div>
     )
   }
-  changeIt () {
-    console.log(this.refs.thisp)
-    this.refs.thisp.innerHTML = 'xxxxx'
-
-    console.log(this.titleRef.current)
-    this.titleRef.current.innerHTML = 'xxxxx'
-
-    console.log(this.titleP)
-    this.titleP.innerHTML = 'xxxxx'
-  }
 }
+
+function enhanceComponent (WrappedComponent) {
+  class newComponent extends PureComponent {
+    render () {
+      return <WrappedComponent {...this.props} />
+    }
+  }
+  // 可通过displayName来修改组件的名称
+  newComponent.displayName = 'xqt'
+  return newComponent
+}
+
+const EnhanceComponent = enhanceComponent(App)
+export default EnhanceComponent
